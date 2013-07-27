@@ -12,8 +12,14 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
+// assuming io is the Socket.IO server object
+io.configure(function () {
+  io.set("transports", ["xhr-polling"]);
+  io.set("polling duration", 10);
+});
+
 var port = process.env.PORT || 8090;
-server.listen(8090);
+server.listen(port);
 
 var redisURL = url.parse(process.env.REDISCLOUD_URL);
 var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
@@ -44,6 +50,6 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
+//app.listen(port, function() {
+//  console.log("Listening on " + port);
+//});
