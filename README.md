@@ -12,8 +12,7 @@ Node.js chat with Redis db
 
 After heroku login, type:
 
-```heroku config:get REDISCLOUD_URL
-```
+```heroku config:get REDISCLOUD_URL```
 
 and paste to .env file:
 
