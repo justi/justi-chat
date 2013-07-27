@@ -1,1 +1,1 @@
-web: sh ./startApp.sh
+web: node web.js
