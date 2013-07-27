@@ -12,6 +12,7 @@ var app = require('express')();
 var server = require('http').createServer(app);
 var io = require('socket.io').listen(server);
 
+var port = process.env.PORT || 8090;
 server.listen(8090);
 
 var redisURL = url.parse(process.env.REDISCLOUD_URL);
@@ -43,7 +44,6 @@ io.sockets.on('connection', function (socket) {
   });
 });
 
-var port = process.env.PORT || 5000;
 app.listen(port, function() {
   console.log("Listening on " + port);
 });
