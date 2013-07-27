@@ -1,5 +1,3 @@
-var express = require("express");
-var app = express();
 var redis = require('redis');
 var url = require('url');
 var partials = require('express-partials');
@@ -9,6 +7,12 @@ var partials = require('express-partials');
 // http://rediscloud:password@hostname:port
 // ex. set in .env file:
 // REDISCLOUD_URL=........
+var express = require("express");
+var app = require('express')();
+var server = require('http').createServer(app);
+var io = require('socket.io').listen(server);
+
+server.listen(8090);
 
 var redisURL = url.parse(process.env.REDISCLOUD_URL);
 var client = redis.createClient(redisURL.port, redisURL.hostname, {no_ready_check: true});
@@ -33,4 +37,12 @@ app.listen(port, function() {
 client.set('foo', 'bar');
 client.get('foo', function (err, reply) {
     console.log(reply.toString()); // Will print `bar`
+});
+
+// test socket connection
+io.sockets.on('connection', function (socket) {
+  socket.emit('news', { hello: 'world' });
+  socket.on('my other event', function (data) {
+    console.log(data);
+  });
 });
