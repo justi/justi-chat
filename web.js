@@ -27,11 +27,6 @@ app.get('/', function(request, response) {
   response.render('index', {msg: "hello"});
 });
 
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
-
 // test redis db
 // REDISCLOUD_URL should be set !!
 client.set('foo', 'bar');
@@ -39,10 +34,16 @@ client.get('foo', function (err, reply) {
     console.log(reply.toString()); // Will print `bar`
 });
 
+
 // test socket connection
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
   socket.on('my other event', function (data) {
     console.log(data);
   });
+});
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
 });
