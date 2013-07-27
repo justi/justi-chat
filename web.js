@@ -23,14 +23,14 @@ app.get('/', function(request, response) {
   response.render('index', {msg: "hello"});
 });
 
-var port = process.env.PORT || 5000;
-app.listen(port, function() {
-  console.log("Listening on " + port);
-});
-
 // test redis db
 // REDISCLOUD_URL should be set !!
 client.set('foo', 'bar');
 client.get('foo', function (err, reply) {
     console.log(reply.toString()); // Will print `bar`
+});
+
+var port = process.env.PORT || 5000;
+app.listen(port, function() {
+  console.log("Listening on " + port);
 });
