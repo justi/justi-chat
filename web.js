@@ -1,12 +1,13 @@
-var redis = require('redis');
 var url = require('url');
 var partials = require('express-partials');
 
+var redis = require('redis');
 // Configure connection to your Redis Cloud service using REDISCLOUD_URL config vars
 // heroku config:get REDISCLOUD_URL
 // http://rediscloud:password@hostname:port
 // ex. set in .env file:
 // REDISCLOUD_URL=........
+
 var express = require("express");
 var app = require('express')();
 var server = require('http').createServer(app);
@@ -41,7 +42,6 @@ client.get('foo', function (err, reply) {
     console.log(reply.toString()); // Will print `bar`
 });
 
-
 // test socket connection
 io.sockets.on('connection', function (socket) {
   socket.emit('news', { hello: 'world' });
@@ -49,7 +49,3 @@ io.sockets.on('connection', function (socket) {
     console.log(data);
   });
 });
-
-//app.listen(port, function() {
-//  console.log("Listening on " + port);
-//});
