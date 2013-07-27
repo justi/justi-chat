@@ -16,7 +16,7 @@ After heroku login, type:
 
 and paste to .env file:
 
-```REDISCLOUD_URL=....```
+```REDISCLOUD_URL=..```
 
 3. Install packages
 
