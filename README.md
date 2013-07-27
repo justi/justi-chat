@@ -6,9 +6,9 @@ Node.js chat with Redis db
 
 ### Installation:
 
-1. Set up Heroku app
+1.Set up Heroku app
 
-2. Set up .env file:
+2.Set up .env file:
 
 After heroku login, type:
 
@@ -16,8 +16,8 @@ After heroku login, type:
 
 and paste to .env file:
 
-``REDISCLOUD_URL=``
+``REDISCLOUD_URL=...``
 
-3. Install packages
+3.Install packages
 
 ```npm install```
