@@ -1,6 +1,7 @@
 var url = require('url');
 var partials = require('express-partials');
 var redis = require('redis');
+var path = require('path');
 // Configure connection to your Redis Cloud service using REDISCLOUD_URL config vars
 // heroku config:get REDISCLOUD_URL
 // http://rediscloud:password@hostname:port
@@ -29,6 +30,7 @@ app.use(express.logger());
 app.engine('ejs', require('ejs').renderFile);
 app.set('view engine', 'ejs');
 app.use(partials());
+app.use('/public', express.static(path.join(__dirname, 'public')));
 
 app.get('/', function(request, response) {
   response.render('index', {msg: "hello"});
