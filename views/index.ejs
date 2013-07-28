@@ -1,11 +1,29 @@
+<script type="text/javascript" src="/socket.io/socket.io.js"></script>
+
 <h1><%= msg %></h1>
 
-<script type="text/javascript" src="/socket.io/socket.io.js"></script>
-<script>
+<div id="chat_login_form">
+  Username: <input type="text" id="login">
+  <div id="submit_button">Submit</div>
+</div>
 
-  var socket = io.connect();
-  socket.on('news', function (data) {
-    console.log(data);
-    socket.emit('my other event', { my: 'data' });
-  });
+<script>
+    var socket = io.connect();
+    socket.on('news', function (data) {
+      console.log(data);
+      socket.emit('my other event', { my: 'data' });
+    });
+
+    $("#submit_button").click(function() {
+      console.log("button clicked");
+      $('#chat_login_form').submit();
+    });
+
+   $('#chat_login_form').submit(function(e){
+      console.log("submit...");
+      var message = $("input#login").val();
+      console.log($("input#login").val());
+      socket.emit('messages', message);
+      return false;
+    });
 </script>

@@ -1,6 +1,5 @@
 var url = require('url');
 var partials = require('express-partials');
-
 var redis = require('redis');
 // Configure connection to your Redis Cloud service using REDISCLOUD_URL config vars
 // heroku config:get REDISCLOUD_URL
